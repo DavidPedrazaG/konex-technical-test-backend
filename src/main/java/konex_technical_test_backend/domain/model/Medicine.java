@@ -2,11 +2,10 @@ package konex_technical_test_backend.domain.model;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
 
 public class Medicine {
     
-    private UUID id;
+    private String id;
     private String name;
     private String factoryLaboratory;
     private LocalDate dateManufactured;
@@ -20,7 +19,7 @@ public class Medicine {
 
 
     public Medicine(String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
-        this.id = UUID.randomUUID();
+        this.id = null;
         this.name = name;
         this.factoryLaboratory = factoryLaboratory;
         this.dateManufactured = dateManufactured;
@@ -29,7 +28,7 @@ public class Medicine {
         this.unitPrice = unitPrice;
     }
 
-    public Medicine(UUID id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
+    public Medicine(String id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
         this.id = id;
         this.name = name;
         this.factoryLaboratory = factoryLaboratory;
@@ -39,11 +38,15 @@ public class Medicine {
         this.unitPrice = unitPrice;
     }
 
-    public UUID getId() {
+    public void decreaseStock(int quantity) {
+        this.quantityInStock -= quantity;
+    }
+
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

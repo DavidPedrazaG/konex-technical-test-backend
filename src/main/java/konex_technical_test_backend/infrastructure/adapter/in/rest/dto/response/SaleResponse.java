@@ -1,13 +1,12 @@
 package konex_technical_test_backend.infrastructure.adapter.in.rest.dto.response;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class SaleResponse {
     
-    private UUID id;
+    private String id;
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private LocalDateTime dateTime;
     private MedicineResponse medicine;
@@ -18,7 +17,7 @@ public class SaleResponse {
     public SaleResponse() {
     }
 
-    public SaleResponse(UUID id, LocalDateTime dateTime, MedicineResponse medicine, int quantity, double unitPrice, double totalPrice) {
+    public SaleResponse(String id, LocalDateTime dateTime, MedicineResponse medicine, int quantity, double unitPrice, double totalPrice) {
         this.id = id;
         this.dateTime = dateTime;
         this.medicine = medicine;
@@ -27,11 +26,11 @@ public class SaleResponse {
         this.totalPrice = totalPrice;
     }
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -1,13 +1,12 @@
 package konex_technical_test_backend.infrastructure.adapter.in.rest.dto.request;
 
-import java.util.UUID;
-
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 public class GenerateSaleRequest {
     
-    @NotNull(message = "El ID del medicamento no puede ser nulo")
-    private UUID medicineId;
+    @NotBlank(message = "El ID del medicamento no puede ser nulo")
+    private String medicineId;
 
     @NotNull(message = "La cantidad no puede ser nula")
     private Integer quantity;
@@ -15,16 +14,16 @@ public class GenerateSaleRequest {
     public GenerateSaleRequest() {
     }
 
-    public GenerateSaleRequest(UUID medicineId, Integer quantity) {
+    public GenerateSaleRequest(String medicineId, Integer quantity) {
         this.medicineId = medicineId;
         this.quantity = quantity;
     }
 
-    public UUID getMedicineId() {
+    public String getMedicineId() {
         return this.medicineId;
     }
 
-    public void setMedicineId(UUID medicineId) {
+    public void setMedicineId(String medicineId) {
         this.medicineId = medicineId;
     }
 

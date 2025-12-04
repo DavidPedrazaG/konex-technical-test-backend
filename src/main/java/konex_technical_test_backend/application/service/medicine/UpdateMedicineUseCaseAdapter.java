@@ -2,7 +2,6 @@ package konex_technical_test_backend.application.service.medicine;
 
 import java.time.LocalDate;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,7 +23,7 @@ public class UpdateMedicineUseCaseAdapter implements UpdateMedicineUseCasePort {
         this.mRepositoryPort = mRepositoryPort;
     }
     
-    public Medicine execute(UUID id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
+    public Medicine execute(String id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
         validateData(id, name, factoryLaboratory, dateManufactured, expirationDate, quantityInStock, unitPrice);
 
         Medicine medicine = new Medicine(id, name, factoryLaboratory, dateManufactured, expirationDate, quantityInStock, unitPrice);
@@ -34,7 +33,7 @@ public class UpdateMedicineUseCaseAdapter implements UpdateMedicineUseCasePort {
         return medicine;
     }
 
-    private void validateData(UUID id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
+    private void validateData(String id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
 
         if (id == null) {
             throw new ValidationException("id", "El id del medicamento es obligatorio");

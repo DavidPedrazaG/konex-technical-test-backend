@@ -2,13 +2,11 @@ package konex_technical_test_backend.infrastructure.adapter.in.rest.controller;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import konex_technical_test_backend.application.service.medicine.*;
@@ -66,7 +64,7 @@ public class MedicineController {
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<MedicineResponse> getMedicineById(@PathVariable("id") UUID id) {
+    public ResponseEntity<MedicineResponse> getMedicineById(@PathVariable("id") String id) {
         Medicine medicine = getMUseCase.getById(id);
         MedicineResponse response = medicineRestMapper.toResponse(medicine);
         return ResponseEntity.ok(response);
@@ -125,7 +123,7 @@ public class MedicineController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<MedicineResponse> updateMedicine(@PathVariable("id") UUID id, @Valid @RequestBody MedicineRequest request) {
+    public ResponseEntity<MedicineResponse> updateMedicine(@PathVariable("id") String id, @Valid @RequestBody MedicineRequest request) {
         Medicine medicine = updateMUseCase.execute(
             id,
             request.getName(), 
@@ -141,7 +139,7 @@ public class MedicineController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteMedicine(@PathVariable("id") UUID id) {
+    public ResponseEntity<Void> deleteMedicine(@PathVariable("id") String id) {
         deleteMUseCase.execute(id);
         return ResponseEntity.noContent().build();
     }

@@ -2,7 +2,6 @@ package konex_technical_test_backend.application.service.medicine;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,7 +25,7 @@ public class GetMedicineUseCaseAdapter implements GetMedicineUseCasePort {
         return mRepositoryPort.findAll();
     }
 
-    public Medicine getById(UUID id) {
+    public Medicine getById(String id) {
         return mRepositoryPort.findById(id)
             .orElseThrow(() -> new MedicineNotFoundException(id));
     }

@@ -3,7 +3,6 @@ package konex_technical_test_backend.domain.port.out.repository;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.List;
-import java.util.UUID;
 
 import konex_technical_test_backend.domain.model.Medicine;
 
@@ -12,7 +11,7 @@ public interface MedicineRepositoryPort {
     Medicine save(Medicine medicine);
 
     List<Medicine> findAll();
-    Optional<Medicine> findById(UUID id);
+    Optional<Medicine> findById(String id);
     Optional<Medicine> findByName(String name);
     List<Medicine> findByFactoryLaboratory(String factoryLaboratory);
     List<Medicine> findByDateManufactured(LocalDate startDate, LocalDate enDate);
@@ -22,5 +21,5 @@ public interface MedicineRepositoryPort {
     
     Medicine update(Medicine medicine);
 
-    void deleteById(UUID id);
+    void deleteById(String id);
 }

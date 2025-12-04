@@ -3,7 +3,6 @@ package konex_technical_test_backend.infrastructure.adapter.out.persistence.adap
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
@@ -41,7 +40,7 @@ public class SaleRepositoryAdapter implements SaleRepositoryPort {
     }
 
     @Override
-    public Optional<Sale> findById(UUID id) {
+    public Optional<Sale> findById(String id) {
         return saleJpaRepository.findById(id)
             .map(saleJpaMapper::toDomain);
     }
@@ -55,7 +54,7 @@ public class SaleRepositoryAdapter implements SaleRepositoryPort {
     }
     
     @Override
-    public List<Sale> findByMedicineId(UUID id) {
+    public List<Sale> findByMedicineId(String id) {
         return saleJpaRepository.findByMedicineId(id)
             .stream()
             .map(saleJpaMapper::toDomain)

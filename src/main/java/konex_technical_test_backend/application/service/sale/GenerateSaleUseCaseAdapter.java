@@ -1,7 +1,5 @@
 package konex_technical_test_backend.application.service.sale;
 
-import java.util.UUID;
-
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,12 +23,14 @@ public class GenerateSaleUseCaseAdapter implements GenerateSaleUseCasePort {
         this.sRepositoryPort = sRepositoryPort;
     }
     
-    public Sale execute(UUID medicineId, int quantity) {
+    public Sale execute(String medicineId, int quantity) {
         
         validateInputs(medicineId, quantity);
         
         Medicine medicine = mRepositoryPort.findById(medicineId)
             .orElseThrow(() -> new MedicineNotFoundException(medicineId));
+
+        medicine.decreaseStock(quantity);
 
         Sale sale = new Sale(
             medicine,
@@ -38,13 +38,15 @@ public class GenerateSaleUseCaseAdapter implements GenerateSaleUseCasePort {
             medicine.getUnitPrice()
         );
 
+        medicine = mRepositoryPort.update(medicine);
+
         sale = sRepositoryPort.generateSale(sale);
 
         return sale;
         
     }
 
-    private void validateInputs(UUID medicineId, int quantity) {
+    private void validateInputs(String medicineId, int quantity) {
         if(medicineId == null) {
             throw new ValidationException("medicine", "El medicamento no puede ser nulo");
         }

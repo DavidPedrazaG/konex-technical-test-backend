@@ -3,7 +3,6 @@ package konex_technical_test_backend.infrastructure.adapter.out.persistence.adap
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
@@ -41,7 +40,7 @@ public class MedicineRepositoryAdapter implements MedicineRepositoryPort {
     }
 
     @Override
-    public Optional<Medicine> findById(UUID id) {
+    public Optional<Medicine> findById(String id) {
         return medicineJpaRepository.findById(id)
             .map(medicineJpaMapper::toDomain);
     }
@@ -100,7 +99,7 @@ public class MedicineRepositoryAdapter implements MedicineRepositoryPort {
     }
 
     @Override
-    public void deleteById(UUID id) {
+    public void deleteById(String id) {
         medicineJpaRepository.deleteById(id);
     }
 }

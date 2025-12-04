@@ -2,13 +2,11 @@ package konex_technical_test_backend.infrastructure.adapter.in.rest.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import konex_technical_test_backend.application.service.sale.*;
@@ -56,14 +54,14 @@ public class SaleController {
     }
 
     @GetMapping("/get-by-id/{id}")
-    public ResponseEntity<SaleResponse> getMedicineById(@PathVariable("id") UUID id) {
+    public ResponseEntity<SaleResponse> getMedicineById(@PathVariable("id") String id) {
         Sale sale = getSaleUseCase.getById(id);
         SaleResponse response = saleRestMapper.toResponse(sale);
         return ResponseEntity.ok(response);
     }
 
     @GetMapping("/get-by-medicine-id/{medicineId}")
-    public ResponseEntity<List<SaleResponse>> getByMedicineId(@PathVariable("medicineId") UUID medicineId) {
+    public ResponseEntity<List<SaleResponse>> getByMedicineId(@PathVariable("medicineId") String medicineId) {
         List<Sale> sales = getSaleUseCase.getByMedicineId(medicineId);
         List<SaleResponse> responses = sales.stream()
             .map(saleRestMapper::toResponse)

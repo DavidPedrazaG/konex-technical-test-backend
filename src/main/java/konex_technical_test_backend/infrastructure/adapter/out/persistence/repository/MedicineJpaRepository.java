@@ -2,7 +2,6 @@ package konex_technical_test_backend.infrastructure.adapter.out.persistence.repo
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -10,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import konex_technical_test_backend.infrastructure.adapter.out.persistence.entity.MedicineJpaEntity;
 
 @Repository
-public interface MedicineJpaRepository extends JpaRepository<MedicineJpaEntity, UUID> {
+public interface MedicineJpaRepository extends JpaRepository<MedicineJpaEntity, String> {
     
     Optional<MedicineJpaEntity> findFirstByNameContainingIgnoreCase(String name);
     List<MedicineJpaEntity> findByFactoryLaboratory(String factoryLaboratory);

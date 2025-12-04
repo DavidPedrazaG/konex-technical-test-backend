@@ -8,33 +8,33 @@ import java.util.UUID;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "medicines",
+@Table(name = "MEDICINE",
     uniqueConstraints = {
-        @UniqueConstraint(columnNames = "name")
+        @UniqueConstraint(columnNames = "NAME")
     }
 )
 public class MedicineJpaEntity {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    @Column(name = "ID", updatable = false, nullable = false)
+    private String id;
 
     @Column(nullable = false, unique = true)
     private String name;
 
-    @Column(name = "factory_laboratory", nullable = false)
+    @Column(name = "FACTORY_LABORATORY", nullable = false)
     private String factoryLaboratory;
 
-    @Column(name = "date_manufactured", nullable = false)
+    @Column(name = "DATE_MANUFACTURED", nullable = false)
     private LocalDate dateManufactured;
 
-    @Column(name = "expiration_date", nullable = false)
+    @Column(name = "EXPIRATION_DATE", nullable = false)
     private LocalDate expirationDate;
 
-    @Column(name = "quantity_in_stock", nullable = false)
+    @Column(name = "QUANTITY_IN_STOCK", nullable = false)
     private int quantityInStock;
 
-    @Column(name = "unit_price", nullable = false)
+    @Column(name = "UNIT_PRICE", nullable = false)
     private double unitPrice;
 
     @OneToMany(mappedBy = "medicine", fetch = FetchType.LAZY)
@@ -43,7 +43,7 @@ public class MedicineJpaEntity {
     public MedicineJpaEntity() {
     }
 
-    public MedicineJpaEntity(UUID id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
+    public MedicineJpaEntity(String id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
         this.id = id;
         this.name = name;
         this.factoryLaboratory = factoryLaboratory;
@@ -56,15 +56,15 @@ public class MedicineJpaEntity {
     @PrePersist
     protected void onCreate() {
         if (this.id == null) {
-            this.id = UUID.randomUUID();
+            this.id = UUID.randomUUID().toString();
         }
     }
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -2,7 +2,6 @@ package konex_technical_test_backend.application.service.sale;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,14 +25,14 @@ public class GetSaleUseCaseAdapter implements GetSaleUseCasePort {
         return sRepositoryPort.findAll();
     }
 
-    public Sale getById(UUID id) {
+    public Sale getById(String id) {
         return sRepositoryPort.findById(id)
             .orElseThrow(() -> new SaleNotFoundException(id));
     }
     public List<Sale> getByDateTime(LocalDateTime startDate, LocalDateTime enDate) {
         return sRepositoryPort.findByDateTime(startDate, enDate);
     }
-    public List<Sale> getByMedicineId(UUID id) {
+    public List<Sale> getByMedicineId(String id) {
         return sRepositoryPort.findByMedicineId(id);
     }
     public List<Sale> getByQuantity(int from, int to) {

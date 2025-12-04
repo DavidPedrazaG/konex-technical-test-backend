@@ -1,11 +1,10 @@
 package konex_technical_test_backend.application.dto;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class MedicineDTO {
     
-    private UUID id;
+    private String id;
     private String name;
     private String factoryLaboratory;
     private LocalDate dateManufactured;
@@ -16,7 +15,7 @@ public class MedicineDTO {
     public MedicineDTO() {
     }
 
-    public MedicineDTO(UUID id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
+    public MedicineDTO(String id, String name, String factoryLaboratory, LocalDate dateManufactured, LocalDate expirationDate, int quantityInStock, double unitPrice) {
         this.id = id;
         this.name = name;
         this.factoryLaboratory = factoryLaboratory;
@@ -26,11 +25,11 @@ public class MedicineDTO {
         this.unitPrice = unitPrice;
     }
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

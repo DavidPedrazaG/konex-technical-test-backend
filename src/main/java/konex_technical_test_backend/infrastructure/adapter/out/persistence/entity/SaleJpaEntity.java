@@ -6,33 +6,33 @@ import java.util.UUID;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "sales")
+@Table(name = "SALE")
 public class SaleJpaEntity {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private UUID id;
+    @Column(name = "ID", updatable = false, nullable = false)
+    private String id;
 
-    @Column(name = "date_time", nullable = false)
+    @Column(name = "DATE_TIME", nullable = false)
     private LocalDateTime dateTime;
 
     @ManyToOne(optional = false)
-    @JoinColumn(name = "medicine_id", nullable = false)
+    @JoinColumn(name = "MEDICINE_ID", nullable = false)
     private MedicineJpaEntity medicine;
 
-    @Column(nullable = false)
+    @Column(name = "QUANTITY", nullable = false)
     private int quantity;
 
-    @Column(name = "unit_price", nullable = false)
+    @Column(name = "UNIT_PRICE", nullable = false)
     private double unitPrice;
 
-    @Column(name = "total_price", nullable = false)
+    @Column(name = "TOTAL_PRICE", nullable = false)
     private double totalPrice;
 
     public SaleJpaEntity() {
     }
 
-    public SaleJpaEntity(UUID id, LocalDateTime dateTime, MedicineJpaEntity medicine, int quantity, double unitPrice, double totalPrice) {
+    public SaleJpaEntity(String id, LocalDateTime dateTime, MedicineJpaEntity medicine, int quantity, double unitPrice, double totalPrice) {
         this.id = id;
         this.dateTime = dateTime;
         this.medicine = medicine;
@@ -44,7 +44,7 @@ public class SaleJpaEntity {
     @PrePersist
     protected void onCreate() {
         if (this.id == null) {
-            this.id = UUID.randomUUID();
+            this.id = UUID.randomUUID().toString();
         }
         if (this.dateTime == null) {
             this.dateTime = LocalDateTime.now();
@@ -58,11 +58,11 @@ public class SaleJpaEntity {
     }
 
 
-    public UUID getId() {
+    public String getId() {
         return this.id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 

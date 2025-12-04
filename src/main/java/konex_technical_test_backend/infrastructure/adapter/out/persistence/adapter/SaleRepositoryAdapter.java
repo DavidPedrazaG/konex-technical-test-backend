@@ -47,7 +47,7 @@ public class SaleRepositoryAdapter implements SaleRepositoryPort {
 
     @Override
     public List<Sale> findByDateTime(LocalDateTime startDate, LocalDateTime enDate) {
-        return saleJpaRepository.findByDateTime(startDate, enDate)
+        return saleJpaRepository.findByDateTimeBetween(startDate, enDate)
             .stream()
             .map(saleJpaMapper::toDomain)
             .collect(Collectors.toList());
@@ -63,7 +63,7 @@ public class SaleRepositoryAdapter implements SaleRepositoryPort {
     
     @Override
     public List<Sale> findByQuantity(int from, int to) {
-        return saleJpaRepository.findByQuantity(from, to)
+        return saleJpaRepository.findByQuantityBetween(from, to)
             .stream()
             .map(saleJpaMapper::toDomain)
             .collect(Collectors.toList());
@@ -71,7 +71,7 @@ public class SaleRepositoryAdapter implements SaleRepositoryPort {
     
     @Override
     public List<Sale> findByUnitPrice(double from, double to) {
-        return saleJpaRepository.findByUnitPrice(from, to)
+        return saleJpaRepository.findByUnitPriceBetween(from, to)
             .stream()
             .map(saleJpaMapper::toDomain)
             .collect(Collectors.toList());
@@ -79,7 +79,7 @@ public class SaleRepositoryAdapter implements SaleRepositoryPort {
     
     @Override
     public List<Sale> findByTotalPrice(double from, double to) {
-        return saleJpaRepository.findByTotalPrice(from, to)
+        return saleJpaRepository.findByTotalPriceBetween(from, to)
             .stream()
             .map(saleJpaMapper::toDomain)
             .collect(Collectors.toList());

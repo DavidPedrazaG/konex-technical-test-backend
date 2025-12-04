@@ -61,7 +61,7 @@ public class MedicineRepositoryAdapter implements MedicineRepositoryPort {
 
     @Override
     public List<Medicine> findByDateManufactured(LocalDate startDate, LocalDate enDate) {
-        return medicineJpaRepository.findByDateManufactured(startDate, enDate)
+        return medicineJpaRepository.findByDateManufacturedBetween(startDate, enDate)
             .stream()
             .map(medicineJpaMapper::toDomain)
             .collect(Collectors.toList());
@@ -69,7 +69,7 @@ public class MedicineRepositoryAdapter implements MedicineRepositoryPort {
     
     @Override
     public List<Medicine> findByExpirationDate(LocalDate startDate, LocalDate enDate) {
-        return medicineJpaRepository.findByExpirationDate(startDate, enDate)
+        return medicineJpaRepository.findByExpirationDateBetween(startDate, enDate)
             .stream()
             .map(medicineJpaMapper::toDomain)
             .collect(Collectors.toList());
@@ -77,7 +77,7 @@ public class MedicineRepositoryAdapter implements MedicineRepositoryPort {
     
     @Override
     public List<Medicine> findByQuantityInStock(int from, int to) {
-        return medicineJpaRepository.findByQuantityInStock(from, to)
+        return medicineJpaRepository.findByQuantityInStockBetween(from, to)
             .stream()
             .map(medicineJpaMapper::toDomain)
             .collect(Collectors.toList());
@@ -85,7 +85,7 @@ public class MedicineRepositoryAdapter implements MedicineRepositoryPort {
     
     @Override
     public List<Medicine> findByUnitPrice(double from, double to) {
-        return medicineJpaRepository.findByUnitPrice(from, to)
+        return medicineJpaRepository.findByUnitPriceBetween(from, to)
             .stream()
             .map(medicineJpaMapper::toDomain)
             .collect(Collectors.toList());

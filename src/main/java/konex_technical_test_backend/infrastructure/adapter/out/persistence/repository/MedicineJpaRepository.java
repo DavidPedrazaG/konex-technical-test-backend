@@ -13,9 +13,9 @@ public interface MedicineJpaRepository extends JpaRepository<MedicineJpaEntity, 
     
     Optional<MedicineJpaEntity> findFirstByNameContainingIgnoreCase(String name);
     List<MedicineJpaEntity> findByFactoryLaboratory(String factoryLaboratory);
-    List<MedicineJpaEntity> findByDateManufactured(LocalDate startDate, LocalDate enDate);
-    List<MedicineJpaEntity> findByExpirationDate(LocalDate startDate, LocalDate enDate);
-    List<MedicineJpaEntity> findByQuantityInStock(int from, int to);
-    List<MedicineJpaEntity> findByUnitPrice(double from, double to);
+    List<MedicineJpaEntity> findByDateManufacturedBetween(LocalDate startDate, LocalDate enDate);
+    List<MedicineJpaEntity> findByExpirationDateBetween(LocalDate startDate, LocalDate enDate);
+    List<MedicineJpaEntity> findByQuantityInStockBetween(int from, int to);
+    List<MedicineJpaEntity> findByUnitPriceBetween(double from, double to);
 
 }
